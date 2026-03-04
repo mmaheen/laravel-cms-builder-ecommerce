@@ -24,8 +24,11 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#feature">Features</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Parts</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Tutorial</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                                 <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
                             </ul>
                         </div>
@@ -42,7 +45,10 @@
                             <h1>
                                 {{ $hero_title }}
                             </h1>
-                            <p>{{ $hero_description }}</p>
+                            <p class="text-secondary">{{ $hero_description }}</p>
+                            <p class="text-secondary"><b>Price: </b><span
+                                    class="badge bg-primary text-white fs-5 px-3 py-2 shadow-sm">180</span> Taka
+                            </p>
                             <button
                                 class="btn btn-lg btn-{{ $hero_button_color }} my-4">{{ $hero_button_title }}</button>
                         </div>
@@ -51,12 +57,12 @@
 
                 </div>
             </section>
-            <section class="feature">Feature</section>
-            <section class="parts">Parts</section>
-            <section class="tutorial">Tutorial</section>
-            <section class="gallery">Gallery</section>
-            <section class="contact">contact</section>
-            <section class="footer">footer</section>
+            <section id="feature">Feature</section>
+            <section id="parts">Parts</section>
+            <section id="tutorial">Tutorial</section>
+            <section id="gallery">Gallery</section>
+            <section id="contact">contact</section>
+            <section id="footer">footer</section>
         </div>
     </div>
 
