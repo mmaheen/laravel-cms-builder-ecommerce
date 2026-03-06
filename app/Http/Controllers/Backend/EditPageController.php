@@ -109,4 +109,27 @@ class EditPageController extends Controller
             ->back()
             ->with('success', 'Hero component updated successfully.');
     }
+
+    public function updateFeature(Request $request)
+    {
+        $page = Page::findOrFail(1);
+
+        $feature = Component::where('page_id', $page->id)
+            ->where('name', 'feature')
+            ->firstOrFail();
+
+        // Get the current data array (thanks to $casts in Component model)
+        $data = $feature->data;
+
+        // Update values from the request
+        $data['feature_title'] = $request->input('feature_title');
+        $data['feature_description'] = $request->input('feature_description');
+
+        $feature->data = $data;
+        $feature->save();
+
+        return redirect()
+            ->back()
+            ->with('success', 'Hero component updated successfully.');
+    }
 }

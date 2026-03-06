@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 Route::get('/edit-page', [EditPageController::class, 'index'])->name('edit.page');
-Route::post('/edit-page/nav/update/title', [EditPageController::class, 'updateHeader'])->name('update.header');
-Route::post('/edit-page/hero/update/title', [EditPageController::class, 'updateHero'])->name('update.hero');
+Route::post('/edit-page/nav/update', [EditPageController::class, 'updateHeader'])->name('update.header');
+Route::post('/edit-page/hero/update', [EditPageController::class, 'updateHero'])->name('update.hero');
+Route::post('/edit-page/feature/update', [EditPageController::class, 'updateFeature'])->name('update.feature');

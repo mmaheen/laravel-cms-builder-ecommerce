@@ -1,2 +1,23 @@
 /* @import 'tailwindcss'; */
 @import "bootstrap";
+
+.single_features i {
+    width: 67px;
+    height: 67px;
+    line-height: 67px;
+    text-align: center;
+    background-color: #fff;
+    color: #1e75d9;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 2px 11px 0px rgba(30, 117, 217, 0.11);
+    -moz-box-shadow: 0px 2px 11px 0px rgba(30, 117, 217, 0.11);
+    box-shadow: 0px 2px 11px 0px rgba(30, 117, 217, 0.11);
+    font-size: 38px;
+}
+.single_features .title {
+    font-size: 24px;
+    margin-top: 25px;
+}
+.single_features p {
+    margin-top: 15px;
+}

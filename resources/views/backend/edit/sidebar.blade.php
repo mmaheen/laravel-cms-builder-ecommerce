@@ -30,7 +30,15 @@
                             <label class="form-label">Show Sections</label>
 
                             @php
-                                $availableSections = ['home', 'feature', 'parts', 'tutorial', 'gallery', 'contact'];
+                                $availableSections = [
+                                    'home',
+                                    'hero',
+                                    'feature',
+                                    'parts',
+                                    'tutorial',
+                                    'gallery',
+                                    'contact',
+                                ];
                             @endphp
 
                             @foreach ($availableSections as $section)
@@ -108,6 +116,37 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-sm btn-success">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="headingFeature">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFeature" aria-expanded="false" aria-controls="collapseFeature">
+                    Feature
+                </button>
+            </h2>
+            <div id="collapseFeature" class="accordion-collapse collapse" aria-labelledby="headingFeature"
+                data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <form action="{{ route('update.feature') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="feature_title" class="form-label">feature Title</label>
+                            <input type="text" id="feature_title" class="form-control" name="feature_title"
+                                value="{{ $feature_title }}" placeholder="feature title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="feature_description" class="form-label">feature Description</label>
+                            <textarea id="feature_description" name="feature_description" class="form-control" rows="8"
+                                placeholder="Description">{{ $feature_description }}</textarea>
+                        </div>
+
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-sm btn-success">Change</button>
                         </div>

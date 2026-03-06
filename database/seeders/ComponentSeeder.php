@@ -18,12 +18,13 @@ class ComponentSeeder extends Seeder
         $components = [
             [
                 'name' => 'header',
-                'position' => 2,
+                'position' => 1,
                 'page_id' => 1,
                 'data' => [
                     'header_title' => $faker->sentence(3),
                     'sections' => [
                         'home',
+                        'hero',
                         'feature',
                         'parts',
                         'tutorial',
@@ -34,7 +35,7 @@ class ComponentSeeder extends Seeder
             ],
             [
                 'name' => 'hero',
-                'position' => 3,
+                'position' => 2,
                 'page_id' => 1,
                 'data' => [
                     'hero_image' => 'header_image.png',
@@ -57,7 +58,7 @@ class ComponentSeeder extends Seeder
             ],
             [
                 'name' => 'feature',
-                'position' => 2,
+                'position' => 3,
                 'page_id' => 1,
                 'data' => [
                     'feature_title' => $faker->sentence(3),
