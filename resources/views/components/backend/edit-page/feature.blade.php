@@ -1,9 +1,12 @@
 @props(['featureTitle' => '', 'featureDescription' => ''])
 
 <section id="feature">
-    <div class="container">
-        <h2 class="text-center">{{ $featureTitle }}</h2>
-        <p class="text-center px-5">{{ $featureDescription }}</p>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-9">
+            <h2 class="text-center">{{ $featureTitle }}</h2>
+            <p class="text-center px-5">{{ $featureDescription }}</p>
+        </div>
+
     </div>
     <div class="row text-center">
         <div class="col-lg-3">
