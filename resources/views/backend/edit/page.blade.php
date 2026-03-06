@@ -11,6 +11,7 @@
 <body>
     <div class="d-flex flex-row">
         @include('backend.edit.sidebar')
+        {{ $component_order }}
         <div class="container m-3">
             <section class="header">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -35,34 +36,24 @@
                     </div>
                 </nav>
             </section>
-            <section class="hero mt-3">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <img class="w-100" src="{{ asset('storage/uploads/heroes/' . $hero_image) }}" alt="">
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex flex-column justify-content-center h-100">
-                            <h1>
-                                {{ $hero_title }}
-                            </h1>
-                            <p class="text-secondary">{{ $hero_description }}</p>
-                            <p class="text-secondary"><b>Price: </b><span
-                                    class="badge bg-primary text-white fs-5 px-3 py-2 shadow-sm">180</span> Taka
-                            </p>
-                            <button
-                                class="btn btn-lg btn-{{ $hero_button_color }} my-4">{{ $hero_button_title }}</button>
-                        </div>
+            <x-backend.edit-page.hero :image="$hero_image" :title="$hero_title" :description="$hero_description" :buttonColor="$hero_button_color"
+                :buttonTitle="$hero_button_title" />
+            <x-backend.edit-page.feature />
 
-                    </div>
+            <x-backend.edit-page.body-parts />
 
-                </div>
-            </section>
-            <section id="feature">Feature</section>
-            <section id="parts">Parts</section>
-            <section id="tutorial">Tutorial</section>
-            <section id="gallery">Gallery</section>
-            <section id="contact">contact</section>
-            <section id="footer">footer</section>
+            <x-backend.edit-page.tutorial />
+            <x-backend.edit-page.gallery />
+            <x-backend.edit-page.contact />
+            <x-backend.edit-page.footer />
+
+            {{-- @php
+                $sections = ['feature', 'body-parts', 'tutorial', 'gallery', 'contact', 'footer'];
+            @endphp
+            @foreach ($sections as $section)
+                <x-backend.edit-page.{{ $section }} />
+            @endforeach --}}
+
         </div>
     </div>
 
