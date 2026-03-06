@@ -9,6 +9,7 @@ class Component extends Model
 {
     /** @use HasFactory<\Database\Factories\ComponentFactory> */
     use HasFactory;
+    protected $casts = ['data' => 'array',];
 
     public function page()
     {

@@ -19,13 +19,32 @@
             <div id="collapseNavbar" class="accordion-collapse collapse" aria-labelledby="headingNavbar"
                 data-bs-parent="#sidebarAccordion">
                 <div class="accordion-body">
-                    <form action="{{ route('update.header-title') }}" method="POST">
+                    <form action="{{ route('update.header') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="header_title" class="form-label">Header Title</label>
                             <input type="text" id="header_title" class="form-control" name="header_title"
                                 value="{{ $header_title }}" placeholder="Header title">
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Show Sections</label>
+
+                            @php
+                                $availableSections = ['home', 'feature', 'parts', 'tutorial', 'gallery', 'contact'];
+                            @endphp
+
+                            @foreach ($availableSections as $section)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="sections[]"
+                                        value="{{ $section }}" id="section{{ ucfirst($section) }}"
+                                        {{ in_array($section, $sections ?? []) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="section{{ ucfirst($section) }}">
+                                        {{ ucfirst($section) }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-sm btn-success">Change</button>
                         </div>
@@ -70,7 +89,8 @@
                             <select class="form-select" name="hero_button_color" id="hero_button_color">
                                 <option value="primary" {{ $hero_button_color == 'primary' ? 'selected' : '' }}>Blue
                                 </option>
-                                <option value="secondary" {{ $hero_button_color == 'secondary' ? 'selected' : '' }}>Gray
+                                <option value="secondary" {{ $hero_button_color == 'secondary' ? 'selected' : '' }}>
+                                    Gray
                                 </option>
                                 <option value="success" {{ $hero_button_color == 'success' ? 'selected' : '' }}>Green
                                 </option>

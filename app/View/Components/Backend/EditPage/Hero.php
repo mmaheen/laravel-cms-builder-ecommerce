@@ -8,22 +8,24 @@ use Illuminate\View\Component;
 
 class Hero extends Component
 {
-    public $image;
-    public $title;
-    public $description;
-    public $buttonColor;
-    public $buttonTitle;
+    public $heroImage;
+    public $heroTitle;
+    public $heroDescription;
+    public $heroButtonColor;
+    public $heroButtonTitle;
+    public $heroPrice;
     /**
      * Create a new component instance.
      */
-    public function __construct($image, $title, $description, $buttonColor, $buttonTitle)
+    public function __construct($heroImage, $heroTitle, $heroDescription, $heroButtonColor, $heroButtonTitle, $heroPrice)
     {
         //
-        $this->image = $image;
-        $this->title = $title;
-        $this->description = $description;
-        $this->buttonColor = $buttonColor;
-        $this->buttonTitle = $buttonTitle;
+        $this->heroImage = $heroImage;
+        $this->heroTitle = $heroTitle;
+        $this->heroDescription = $heroDescription;
+        $this->heroButtonColor = $heroButtonColor;
+        $this->heroButtonTitle = $heroButtonTitle;
+        $this->heroPrice = $heroPrice;
     }
 
     /**

@@ -18,22 +18,7 @@ class PageFactory extends Factory
     {
         return [
             //
-            'header_title' => $this->faker->word,
-            'hero_title' => $this->faker->word,
-            'hero_description' => $this->faker->paragraph,
-            'hero_image' => 'header_image.png',
-            'hero_button_title' => $this->faker->word,
-            'hero_button_color' => collect([
-                'primary',
-                'secondary',
-                'success',
-                'danger',
-                'warning',
-                'info',
-                'light',
-                'dark',
-                'link'
-            ])->random(),
+
         ];
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->integer('position');
             $table->foreignId('page_id')->constrained();
+            $table->json('data')->nullable();
             $table->timestamps();
         });
     }
