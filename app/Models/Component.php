@@ -9,4 +9,9 @@ class Component extends Model
 {
     /** @use HasFactory<\Database\Factories\ComponentFactory> */
     use HasFactory;
+
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 }

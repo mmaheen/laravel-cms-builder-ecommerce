@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Component;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class EditPageController extends Controller
     public function index()
     {
         $page = Page::where('id', 1)->first();
-        $component_order = $page->component_order;
+        // $components = Component::all();
+        return $page->components;
         $header_title = $page->header_title;
         $hero_title = $page->hero_title;
         $hero_description = $page->hero_description;
@@ -20,7 +22,6 @@ class EditPageController extends Controller
         $hero_button_title = $page->hero_button_title;
         $hero_button_color = $page->hero_button_color;
         return view("backend.edit.page", compact(
-            "component_order",
             "header_title",
             "hero_title",
             "hero_description",
