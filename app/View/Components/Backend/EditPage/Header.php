@@ -8,12 +8,16 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
+    public $headerTitle;
+    public $sections;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($headerTitle, $sections)
     {
         //
+        $this->headerTitle = $headerTitle;
+        $this->sections = $sections;
     }
 
     /**
