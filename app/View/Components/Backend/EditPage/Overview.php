@@ -6,18 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Header extends Component
+class Overview extends Component
 {
-    public $header;
-    public $sections;
+    public $overview;
     /**
      * Create a new component instance.
      */
-    public function __construct($header, $sections)
+    public function __construct($overview)
     {
         //
-        $this->header = $header;
-        $this->sections = $sections;
+        $this->overview = $overview;
     }
 
     /**
@@ -25,6 +23,6 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.backend.edit-page.header');
+        return view('components.backend.edit-page.overview');
     }
 }

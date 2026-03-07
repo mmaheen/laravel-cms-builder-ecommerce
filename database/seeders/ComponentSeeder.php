@@ -21,7 +21,7 @@ class ComponentSeeder extends Seeder
                 'position' => 1,
                 'page_id' => 1,
                 'data' => [
-                    'header_title' => $faker->sentence(3),
+                    'title' => 'ShopSphere',
                     'sections' => [
                         'home',
                         'hero',
@@ -38,10 +38,10 @@ class ComponentSeeder extends Seeder
                 'position' => 2,
                 'page_id' => 1,
                 'data' => [
-                    'hero_image' => 'header_image.png',
-                    'hero_title' => $faker->sentence(3),
-                    'hero_description' => $faker->paragraph,
-                    'hero_button_color' => $faker->randomElement([
+                    'image' => 'header_image.png',
+                    'title' => 'Performance Meets Innovation',
+                    'description' => 'Engineered for performance, designed for creators.',
+                    'button_color' => $faker->randomElement([
                         'primary',
                         'secondary',
                         'success',
@@ -52,8 +52,8 @@ class ComponentSeeder extends Seeder
                         'dark',
                         'link'
                     ]),
-                    'hero_button_title' => $faker->word,
-                    'hero_price' => $faker->numberBetween(100, 10000),
+                    'button_title' => 'Buy now',
+                    'price' => $faker->numberBetween(100, 10000),
                 ],
             ],
             [
@@ -61,14 +61,58 @@ class ComponentSeeder extends Seeder
                 'position' => 3,
                 'page_id' => 1,
                 'data' => [
-                    'feature_title' => $faker->sentence(3),
-                    'feature_description' => $faker->paragraph,
+                    'title' => 'Powerful Features',
+                    'description' => 'Discover the cutting-edge technology that powers every detail.',
+                    'features' => [
+                        [
+                            'icon' => 'fas fa-camera',
+                            'title' => 'Camera',
+                            'description' => '20 MP Resolution, 4k at 60 FPS',
+                        ],
+                        [
+                            'icon' => 'fas fa-battery-full',
+                            'title' => 'Battery',
+                            'description' => 'Up to 90 Minutes Flight Time',
+                        ],
+                        [
+                            'icon' => 'fas fa-check-square',
+                            'title' => 'Control',
+                            'description' => '2 KM of Smooth Range',
+                        ],
+                        [
+                            'icon' => 'fas fa-tachometer-alt',
+                            'title' => 'Speed',
+                            'description' => 'Fly up to 30 MPH',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name' => 'overview',
+                'position' => 4,
+                'page_id' => 1,
+                'data' => [
+                    'title' => 'At a Glance',
+                    'description' => 'Powerful technology built for creators and explorers. Seamless design meets cutting‑edge functionality. Unlock speed, control, and endless possibilities',
+                    'image' => 'about.png',
+                    'button_color' => $faker->randomElement([
+                        'primary',
+                        'secondary',
+                        'success',
+                        'danger',
+                        'warning',
+                        'info',
+                        'light',
+                        'dark',
+                        'link'
+                    ]),
+                    'button_title' => 'Read more...',
                 ]
             ],
-            ['name' => 'tutorial', 'position' => 4, 'page_id' => 1, 'data' => []],
-            ['name' => 'gallery', 'position' => 5, 'page_id' => 1, 'data' => []],
-            ['name' => 'contact', 'position' => 6, 'page_id' => 1, 'data' => []],
-            ['name' => 'footer', 'position' => 7, 'page_id' => 1, 'data' => []],
+            ['name' => 'tutorial', 'position' => 5, 'page_id' => 1, 'data' => []],
+            ['name' => 'gallery', 'position' => 6, 'page_id' => 1, 'data' => []],
+            ['name' => 'contact', 'position' => 7, 'page_id' => 1, 'data' => []],
+            ['name' => 'footer', 'position' => 8, 'page_id' => 1, 'data' => []],
         ];
 
         foreach ($components as $component) {
