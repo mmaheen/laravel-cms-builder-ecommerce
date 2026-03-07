@@ -51,7 +51,7 @@ class EditPageController extends Controller
         $data = $header->data;
 
         // Update the header title
-        $data['header_title'] = $request->input('header_title');
+        $data['title'] = $request->input('header_title');
 
         // Update the sections array from checkboxes
         $data['sections'] = $request->input('sections', []);
@@ -196,6 +196,13 @@ class EditPageController extends Controller
     public function test()
     {
         $fields = [
+            'header_title' => [
+                "type" => "text",
+                "name" => "header_title",
+                "label" => "Header Title",
+                "placeholder" => "Enter header title",
+                "required" => true
+            ],
             [
                 "type" => "text",
                 "name" => "name",

@@ -18,7 +18,7 @@ class PageFactory extends Factory
     {
         return [
             //
-
+            "title" => $this->faker->sentence(2),
         ];
     }
 }
