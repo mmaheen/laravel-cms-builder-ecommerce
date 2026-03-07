@@ -1,4 +1,4 @@
-<section class="header">
+<section class="header mb-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">{{ $header->data['title'] }}</a>

@@ -1,7 +1,7 @@
 @props(['feature' => ''])
 
-<section id="feature">
-    <div class="row justify-content-center">
+<section id="feature" class="mb-5">
+    <div class="row justify-content-center mb-2">
         <div class="col-lg-6 col-md-9">
             <h2 class="text-center">{{ $feature->data['title'] }}</h2>
             <p class="text-center px-5">{{ $feature->data['description'] }}</p>

@@ -10,23 +10,19 @@
 </head>
 
 <body>
-    <div class="d-flex flex-row">
-        <div class="container m-3">
-            @foreach ($components->sortBy('position') as $component)
-                @if ($component->name === 'feature')
-                    <x-backend.edit-page.feature :feature="$feature" />
-                @elseif ($component->name === 'hero')
-                    <x-backend.edit-page.hero :hero="$hero" />
-                @elseif($component->name === 'header')
-                    <x-backend.edit-page.header :header="$header" :sections="$sections" />
-                @elseif ($component->name === 'overview')
-                    <x-backend.edit-page.overview :overview="$overview" />
-                @endif
-            @endforeach
-
-        </div>
+    <div class="container">
+        @foreach ($components->sortBy('position') as $component)
+            @if ($component->name === 'feature')
+                <x-backend.edit-page.feature :feature="$feature" />
+            @elseif ($component->name === 'hero')
+                <x-backend.edit-page.hero :hero="$hero" />
+            @elseif($component->name === 'header')
+                <x-backend.edit-page.header :header="$header" :sections="$sections" />
+            @elseif ($component->name === 'overview')
+                <x-backend.edit-page.overview :overview="$overview" />
+            @endif
+        @endforeach
     </div>
-
 </body>
 
 </html>

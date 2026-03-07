@@ -29,6 +29,7 @@ class EditPageController extends Controller
 
 
         return view("backend.edit.page", compact(
+            'page',
             'components',
             'header',
             'sections',

@@ -1,4 +1,4 @@
-  <section class="hero mt-3">
+  <section class="hero mb-5">
       <div class="row">
           <div class="col-lg-8">
               <img class="w-100" src="{{ asset('storage/uploads/heroes/' . $hero->data['image']) }}" alt="">
