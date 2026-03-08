@@ -13,21 +13,96 @@ class EditPageController extends Controller
     public function edit($id)
     {
         $page = Page::findOrFail($id);
-        // return $page;
-
         $components = $page->components()->orderBy('position')->get();
-        // return $components;
 
+        // Load components
         $header = Component::where('page_id', $page->id)->where('name', 'header')->first();
-        $sections = $header->data['sections'] ?? [];
-
         $hero = Component::where('page_id', $page->id)->where('name', 'hero')->first();
-
         $feature = Component::where('page_id', $page->id)->where('name', 'feature')->first();
-
-
         $overview = Component::where('page_id', $page->id)->where('name', 'overview')->first();
 
+        $sections = $header->data['sections'] ?? [];
+
+        // Common button colors
+        $buttonColors = [
+            "primary" => "Blue",
+            "secondary" => "Gray",
+            "success" => "Green",
+            "danger" => "Red",
+            "warning" => "Yellow",
+            "info" => "Teal",
+            "light" => "Light Gray",
+            "dark" => "Black",
+            "link" => "Link Style"
+        ];
+
+        // Navbar fields
+        $navbarFields = [
+            ["type" => "number", "name" => "header_position", "label" => "Position", "value" => $header->position],
+            ["type" => "text", "name" => "header_title", "label" => "Header Title", "value" => $header->data['title'] ?? '', "placeholder" => "Header title"],
+            [
+                "type" => "checkbox_group",
+                "name" => "sections",
+                "label" => "Show Sections",
+                "options" => [
+                    "home" => "Home",
+                    "hero" => "Hero",
+                    "feature" => "Feature",
+                    "parts" => "Parts",
+                    "tutorial" => "Tutorial",
+                    "gallery" => "Gallery",
+                    "contact" => "Contact"
+                ],
+                "selected" => $sections
+            ]
+        ];
+
+        // Hero fields
+        $heroFields = [
+            ["type" => "number", "name" => "hero_position", "label" => "Position", "value" => $hero->position],
+            ["type" => "text", "name" => "hero_title", "label" => "Hero Title", "value" => $hero->data['title'] ?? '', "placeholder" => "Hero title"],
+            ["type" => "textarea", "name" => "hero_description", "label" => "Hero Description", "value" => $hero->data['description'] ?? '', "rows" => 8, "placeholder" => "Description"],
+            ["type" => "file", "name" => "hero_image", "label" => "Hero Image"],
+            ["type" => "text", "name" => "hero_button_title", "label" => "Button Title", "value" => $hero->data['button_title'] ?? '', "placeholder" => "Button Name"],
+            ["type" => "select", "name" => "hero_button_color", "label" => "Button Color", "options" => $buttonColors, "selected" => $hero->data['button_color'] ?? 'primary'],
+            ["type" => "number", "name" => "hero_price", "label" => "Price", "value" => $hero->data['price'] ?? '']
+        ];
+
+        // Feature fields
+        $featureFields = [
+            ["type" => "number", "name" => "feature_position", "label" => "Position", "value" => $feature->position],
+            ["type" => "text", "name" => "feature_title", "label" => "Feature Title", "value" => $feature->data['title'] ?? '', "placeholder" => "Feature title"],
+            ["type" => "textarea", "name" => "feature_description", "label" => "Feature Description", "value" => $feature->data['description'] ?? '', "rows" => 4, "placeholder" => "Description"],
+            [
+                "type" => "select",
+                "name" => "new_feature[icon]",
+                "label" => "Feature Icon",
+                "options" => [
+                    "fas fa-camera" => "Camera",
+                    "fas fa-battery-full" => "Battery",
+                    "fas fa-check-square" => "Control",
+                    "fas fa-tachometer-alt" => "Speed",
+                    "fas fa-heart" => "Heart",
+                    "fas fa-home" => "Home",
+                    "fas fa-star" => "Star",
+                    "fas fa-envelope" => "Envelope",
+                    "fas fa-user" => "User",
+                    "fas fa-cog" => "Settings"
+                ]
+            ],
+            ["type" => "text", "name" => "new_feature[title]", "label" => "New Feature Title", "placeholder" => "Title"],
+            ["type" => "textarea", "name" => "new_feature[description]", "label" => "New Feature Description", "placeholder" => "Description"]
+        ];
+
+        // Overview fields
+        $overviewFields = [
+            ["type" => "number", "name" => "overview_position", "label" => "Position", "value" => $overview->position],
+            ["type" => "text", "name" => "overview_title", "label" => "Overview Title", "value" => $overview->data['title'] ?? '', "placeholder" => "Overview title"],
+            ["type" => "textarea", "name" => "overview_description", "label" => "Overview Description", "value" => $overview->data['description'] ?? '', "rows" => 8, "placeholder" => "Description"],
+            ["type" => "file", "name" => "overview_image", "label" => "Overview Image"],
+            ["type" => "text", "name" => "overview_button_title", "label" => "Button Title", "value" => $overview->data['button_title'] ?? '', "placeholder" => "Button Name"],
+            ["type" => "select", "name" => "overview_button_color", "label" => "Button Color", "options" => $buttonColors, "selected" => $overview->data['button_color'] ?? 'primary']
+        ];
 
         return view("backend.edit.page-one", compact(
             'page',
@@ -36,7 +111,11 @@ class EditPageController extends Controller
             'sections',
             'hero',
             'feature',
-            'overview'
+            'overview',
+            'navbarFields',
+            'heroFields',
+            'featureFields',
+            'overviewFields'
         ));
     }
     public function updateHeader(Request $request, $id)

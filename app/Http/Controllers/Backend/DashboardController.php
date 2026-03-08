@@ -118,7 +118,7 @@ class DashboardController extends Controller
 
         // Redirect back with success message
         return redirect()
-            ->route('table')
+            ->route('edit.page', $page->id)
             ->with('success', 'Page & all components created successfully.');
     }
 }
