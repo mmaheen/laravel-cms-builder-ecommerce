@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 class EditPageController extends Controller
 {
     //
-    public function index()
+    public function edit($id)
     {
-        $page = Page::findOrFail(1);
+        $page = Page::findOrFail($id);
+        // return $page;
 
         $components = $page->components()->orderBy('position')->get();
         // return $components;
@@ -38,13 +39,16 @@ class EditPageController extends Controller
             'overview'
         ));
     }
-    public function updateHeader(Request $request)
+    public function updateHeader(Request $request, $id)
     {
-        $page = Page::findOrFail(1);
+        // return $id;
+        $page = Page::findOrFail($id);
 
         $header = Component::where('page_id', $page->id)
             ->where('name', 'header')
             ->firstOrFail();
+
+        // return $header;
 
         $header->position = $request->input('header_position');
 
@@ -61,13 +65,12 @@ class EditPageController extends Controller
         $header->data = $data;
         $header->save();
 
-        return redirect()->route('edit.page')
-            ->with('success', 'Header updated successfully.');
+        return back()->with('success', 'Header updated successfully.');
     }
 
-    public function updateHero(Request $request)
+    public function updateHero(Request $request, $id)
     {
-        $page = Page::findOrFail(1);
+        $page = Page::findOrFail($id);
 
         $hero = Component::where('page_id', $page->id)
             ->where('name', 'hero')
@@ -104,9 +107,9 @@ class EditPageController extends Controller
             ->with('success', 'Hero component updated successfully.');
     }
 
-    public function updateFeature(Request $request)
+    public function updateFeature(Request $request, $id)
     {
-        $page = Page::findOrFail(1);
+        $page = Page::findOrFail($id);
 
         $feature = Component::where('page_id', $page->id)
             ->where('name', 'feature')
@@ -135,9 +138,9 @@ class EditPageController extends Controller
         return redirect()->back()->with('success', 'Feature component updated successfully!');
     }
 
-    public function destroyFeature($index)
+    public function destroyFeature($index, $page)
     {
-        $page = Page::findOrFail(1);
+        $page = Page::findOrFail($page);
 
         $feature = Component::where('page_id', $page->id)
             ->where('name', 'feature')
@@ -155,9 +158,9 @@ class EditPageController extends Controller
         return redirect()->back()->with('success', 'Feature deleted successfully!');
     }
 
-    public function updateOverview(Request $request)
+    public function updateOverview(Request $request, $id)
     {
-        $page = Page::findOrFail(1);
+        $page = Page::findOrFail($id);
 
         $overview = Component::where('page_id', $page->id)
             ->where('name', 'overview')

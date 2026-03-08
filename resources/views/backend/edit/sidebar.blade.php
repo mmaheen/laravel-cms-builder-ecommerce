@@ -1,5 +1,5 @@
 <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-    <a href="{{ route('edit.page') }}"
+    <a href="{{ route('edit.page', $page->id) }}"
         class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
         <svg class="bi me-2" width="30" height="24">
             <use xlink:href="#bootstrap" />
@@ -19,7 +19,7 @@
             <div id="collapseNavbar" class="accordion-collapse collapse" aria-labelledby="headingNavbar"
                 data-bs-parent="#sidebarAccordion">
                 <div class="accordion-body">
-                    <form action="{{ route('update.header') }}" method="POST">
+                    <form action="{{ route('update.header', $page->id) }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="header_position">Position</label>
@@ -77,7 +77,7 @@
             <div id="collapseHero" class="accordion-collapse collapse" aria-labelledby="headingHero"
                 data-bs-parent="#sidebarAccordion">
                 <div class="accordion-body">
-                    <form action="{{ route('update.hero') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update.hero', $page->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="hero_position">Position</label>
@@ -160,7 +160,7 @@
                 data-bs-parent="#sidebarAccordion">
                 <div class="accordion-body">
                     <!-- Update Form -->
-                    <form action="{{ route('update.feature') }}" method="POST">
+                    <form action="{{ route('update.feature', $page->id) }}" method="POST">
                         @csrf
 
                         <!-- Position -->
@@ -223,7 +223,7 @@
                                         <i class="{{ $featureItem['icon'] }} me-2"></i>
                                         {{ $featureItem['title'] }}
                                     </span>
-                                    <form action="{{ route('feature.destroy', $index) }}" method="POST"
+                                    <form action="{{ route('feature.destroy', [$index, $page->id]) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
@@ -249,7 +249,8 @@
             <div id="collapseOverview" class="accordion-collapse collapse" aria-labelledby="headingOverview"
                 data-bs-parent="#sidebarAccordion">
                 <div class="accordion-body">
-                    <form action="{{ route('update.overview') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('update.overview', $page->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="overview_position">Position</label>

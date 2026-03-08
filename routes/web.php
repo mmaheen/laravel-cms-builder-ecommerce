@@ -21,14 +21,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/create/registration/token', [AuthController::class, 'createToken'])->name('create.registration.token');
+
+
+    Route::get('/table', [DashboardController::class, 'table'])->name('table');
+    Route::get('/page/create', [DashboardController::class, 'createPage'])->name('page.create');
+    Route::post('/page/create', [DashboardController::class, 'storePage'])->name('page.store');
 });
 
-Route::get('/edit-page', [EditPageController::class, 'index'])->name('edit.page');
-Route::post('/edit-page/nav/update', [EditPageController::class, 'updateHeader'])->name('update.header');
-Route::post('/edit-page/hero/update', [EditPageController::class, 'updateHero'])->name('update.hero');
-Route::post('/edit-page/feature/update', [EditPageController::class, 'updateFeature'])->name('update.feature');
-Route::delete('/feature/{index}', [EditPageController::class, 'destroyFeature'])->name('feature.destroy');
+Route::get('/edit-page/{id}', [EditPageController::class, 'edit'])->name('edit.page');
+Route::post('/edit-page/nav/update/{id}', [EditPageController::class, 'updateHeader'])->name('update.header');
+Route::post('/edit-page/hero/update/{id}', [EditPageController::class, 'updateHero'])->name('update.hero');
+Route::post('/edit-page/feature/update/{id}', [EditPageController::class, 'updateFeature'])->name('update.feature');
+Route::delete('/feature/{index}/{page}', [EditPageController::class, 'destroyFeature'])->name('feature.destroy');
 
-Route::post('/edit-page/overview/update', [EditPageController::class, 'updateOverview'])->name('update.overview');
+Route::post('/edit-page/overview/update/{id}', [EditPageController::class, 'updateOverview'])->name('update.overview');
 
 Route::get('/test', [EditPageController::class, 'test']);

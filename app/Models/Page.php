@@ -9,6 +9,7 @@ class Page extends Model
 {
     /** @use HasFactory<\Database\Factories\PageFactory> */
     use HasFactory;
+    protected $fillable = ['title'];
 
     public function components()
     {

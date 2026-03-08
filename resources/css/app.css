@@ -21,3 +21,13 @@
 .single_features p {
     margin-top: 15px;
 }
+
+#sidebar-wrapper {
+    margin-left: 0;
+    transition: margin 0.25s ease-out;
+}
+
+/* Sidebar hidden when toggled */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px; /* same as sidebar width */
+}
