@@ -1,6 +1,10 @@
   <section class="hero mb-5">
       <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-8"
+              style="background-image: url('/assets/backend/edit-page/images/header_shape.png'); 
+               min-height: 100vh; 
+               background-size: contain;
+               background-repeat: no-repeat;">
               <img class="w-100" src="{{ asset('storage/uploads/heroes/' . $hero->data['image']) }}" alt="">
           </div>
           <div class="col-lg-4">

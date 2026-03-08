@@ -41,14 +41,11 @@ class EditPageController extends Controller
     }
     public function updateHeader(Request $request, $id)
     {
-        // return $id;
         $page = Page::findOrFail($id);
 
         $header = Component::where('page_id', $page->id)
             ->where('name', 'header')
             ->firstOrFail();
-
-        // return $header;
 
         $header->position = $request->input('header_position');
 
@@ -200,13 +197,7 @@ class EditPageController extends Controller
     public function test()
     {
         $fields = [
-            'header_title' => [
-                "type" => "text",
-                "name" => "header_title",
-                "label" => "Header Title",
-                "placeholder" => "Enter header title",
-                "required" => true
-            ],
+
             [
                 "type" => "text",
                 "name" => "name",
@@ -214,6 +205,52 @@ class EditPageController extends Controller
                 "placeholder" => "Enter your name",
                 "required" => true
             ],
+
+            [
+                "type" => "email",
+                "name" => "email",
+                "label" => "Email",
+                "placeholder" => "Enter your email"
+            ],
+
+            [
+                "type" => "password",
+                "name" => "password",
+                "label" => "Password"
+            ],
+
+            [
+                "type" => "textarea",
+                "name" => "bio",
+                "label" => "Biography",
+                "placeholder" => "Write something...",
+                "rows" => 5
+            ],
+
+            [
+                "type" => "number",
+                "name" => "age",
+                "label" => "Age"
+            ],
+
+            [
+                "type" => "date",
+                "name" => "birthdate",
+                "label" => "Birth Date"
+            ],
+
+            [
+                "type" => "color",
+                "name" => "favorite_color",
+                "label" => "Favorite Color"
+            ],
+
+            [
+                "type" => "file",
+                "name" => "profile_image",
+                "label" => "Upload Image"
+            ],
+
             [
                 "type" => "select",
                 "name" => "skills",
@@ -225,34 +262,111 @@ class EditPageController extends Controller
                     "html" => "HTML",
                     "css" => "CSS"
                 ]
+            ],
+
+            [
+                "type" => "radio",
+                "name" => "gender",
+                "label" => "Gender",
+                "options" => [
+                    "male" => "Male",
+                    "female" => "Female"
+                ]
+            ],
+
+            [
+                "type" => "checkbox",
+                "name" => "terms",
+                "label" => "Accept Terms"
             ]
+
         ];
 
         function render($field)
         {
 
+            echo "<div style='margin-bottom:15px'>";
+
+            if (!empty($field['label'])) {
+                echo "<label>{$field['label']}</label><br>";
+            }
+
             switch ($field['type']) {
+
                 case 'text':
-                    echo "<label>{$field['label']}</label>";
-                    echo "<input type='text' name='{$field['name']}' placeholder='{$field['placeholder']}' " . ($field['required'] ? 'required' : '') . ">";
+                case 'email':
+                case 'password':
+                case 'number':
+                case 'date':
+                case 'color':
+                    echo "<input 
+                    type='{$field['type']}'
+                    name='{$field['name']}'
+                    placeholder='" . ($field['placeholder'] ?? '') . "'
+                    " . (!empty($field['required']) ? 'required' : '') . "
+                  >";
+                    break;
+
+                case 'textarea':
+                    echo "<textarea
+                    name='{$field['name']}'
+                    rows='" . ($field['rows'] ?? 4) . "'
+                    placeholder='" . ($field['placeholder'] ?? '') . "'
+                  ></textarea>";
+                    break;
+
+                case 'file':
+                    echo "<input type='file' name='{$field['name']}'>";
                     break;
 
                 case 'select':
-                    echo "<label>{$field['label']}</label>";
-                    echo "<select name='{$field['name']}' " . ($field['multiple'] ? 'multiple' : '') . ">";
-                    foreach ($field['options'] as $value => $optionLabel) {
-                        echo "<option value='$value'>$optionLabel</option>";
+
+                    $multiple = !empty($field['multiple']) ? "multiple" : "";
+                    $name = !empty($field['multiple']) ? $field['name'] . "[]" : $field['name'];
+
+                    echo "<select name='$name' $multiple>";
+
+                    foreach ($field['options'] as $value => $label) {
+                        echo "<option value='$value'>$label</option>";
                     }
+
                     echo "</select>";
+                    break;
+
+                case 'radio':
+
+                    foreach ($field['options'] as $value => $label) {
+                        echo "
+                <label>
+                    <input type='radio' name='{$field['name']}' value='$value'>
+                    $label
+                </label>
+                ";
+                    }
+
+                    break;
+
+                case 'checkbox':
+
+                    echo "<input type='checkbox' name='{$field['name']}' value='1'>";
+                    break;
+
+                case 'hidden':
+
+                    echo "<input type='hidden' name='{$field['name']}' value='" . ($field['value'] ?? '') . "'>";
                     break;
             }
 
-
-
+            echo "</div>";
         }
+
+        echo "<form method='POST' enctype='multipart/form-data'>";
 
         foreach ($fields as $field) {
             render($field);
         }
+
+        echo "<button type='submit'>Submit</button>";
+        echo "</form>";
     }
 }

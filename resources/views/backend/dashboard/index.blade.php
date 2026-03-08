@@ -21,15 +21,9 @@
         <!-- Action Buttons -->
         <div class="mb-4 d-flex gap-3">
             <!-- Create Registration Link -->
-            <a href="{{ route('create.registration.token') }}" class="btn btn-success">
+            <a href="{{ route('create.registration.token') }}" class="btn btn-link">
                 Create Registration Link
             </a>
-
-            <!-- Logout -->
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
         </div>
 
         <!-- Dashboard Cards -->
