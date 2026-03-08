@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="d-flex flex-row">
+    <div class="d-flex">
         @include('backend.edit.sidebar')
 
         <div class="container m-3">

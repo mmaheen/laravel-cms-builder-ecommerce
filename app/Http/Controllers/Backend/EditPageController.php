@@ -29,7 +29,7 @@ class EditPageController extends Controller
         $overview = Component::where('page_id', $page->id)->where('name', 'overview')->first();
 
 
-        return view("backend.edit.page", compact(
+        return view("backend.edit.page-one", compact(
             'page',
             'components',
             'header',
