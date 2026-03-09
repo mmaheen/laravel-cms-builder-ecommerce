@@ -1,10 +1,9 @@
   <section class="hero mb-5">
       <div class="row">
-          <div class="col-lg-8"
-              style="background-image: url('/assets/backend/edit-page/images/header_shape.png'); 
+          <div class="col-lg-8" {{-- style="background-image: url('/assets/backend/edit-page/images/header_shape.png'); 
                min-height: 75vh; 
                background-size: contain;
-               background-repeat: no-repeat;">
+               background-repeat: no-repeat;" --}}>
               <img class="w-100 mt-5" src="{{ asset('storage/uploads/heroes/' . $hero->data['image']) }}" alt="">
           </div>
           <div class="col-lg-4">
@@ -17,8 +16,8 @@
                           class="badge bg-primary text-white fs-5 px-3 py-2 shadow-sm">{{ $hero->data['price'] }}</span>
                       Taka
                   </p>
-                  <button
-                      class="btn btn-lg btn-{{ $hero->data['button_color'] }} my-4">{{ $hero->data['button_title'] }}</button>
+                  <button class="btn btn-lg btn-{{ $hero->data['button_color'] }} my-4" data-bs-toggle="modal"
+                      data-bs-target="#orderModal">{{ $hero->data['button_title'] }}</button>
               </div>
 
           </div>

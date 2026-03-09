@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Component;
+use App\Models\Order;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -35,5 +36,26 @@ class HomeController extends Controller
             'feature',
             'overview'
         ));
+    }
+
+    public function order(Request $request, $page_id)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer|exists:pages,id',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:500',
+            'quantity' => 'required|integer|min:1',
+        ]);
+        $order = Order::create([
+            'page_id' => $validated['product_id'],
+            'customer_name' => $validated['name'],
+            'customer_email' => $validated['email'],
+            'customer_phone' => $validated['phone'],
+            'shipping_address' => $validated['address'],
+            'quantity' => $validated['quantity'],
+        ]);
+        return $order;
     }
 }

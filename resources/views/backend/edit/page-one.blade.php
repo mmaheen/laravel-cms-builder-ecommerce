@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <div class="d-flex">
+    <div class="d-flex" id="wrapper">
         @include('backend.edit.sidebar')
 
-        <div class="container m-3">
+        <div class="container w-100" id="page-content-wrapper">
+            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
             @foreach ($components->sortBy('position') as $component)
                 @if ($component->name === 'feature')
                     <x-backend.edit-page.feature :feature="$feature" />
@@ -28,6 +29,13 @@
 
         </div>
     </div>
+
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
 
 </body>
 

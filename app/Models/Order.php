@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Order extends Model
+{
+    //
+    protected $fillable = [
+        "page_id",
+        "customer_name",
+        "customer_email",
+        "customer_phone",
+        "shipping_address",
+        "quantity",
+        "status",
+    ];
+}

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 
+Route::post('/order/{id}', [HomeController::class, 'order'])->name('order');
 
 Route::middleware('guest')->group(function () {
     Route::get('/{token}/register', [AuthController::class, 'showRegistrationForm'])->name('registration.form');
