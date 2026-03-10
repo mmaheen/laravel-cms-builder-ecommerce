@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Component;
 use App\Models\Order;
-use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,22 +13,25 @@ class HomeController extends Controller
     //
     public function index()
     {
-        $page = Page::findOrFail(1);
-
-        $components = $page->components()->orderBy('position')->get();
-        $header = Component::where('page_id', $page->id)->where('name', 'header')->first();
+        $products = Product::all();
+        return view("frontend.index", compact("products"));
+    }
+    public function productPageShow(Product $product)
+    {
+        $components = $product->components()->get();
+        $header = Component::where('product_id', $product->id)->where('name', 'header')->first();
         $sections = $header->data['sections'] ?? [];
 
-        $hero = Component::where('page_id', $page->id)->where('name', 'hero')->first();
+        $hero = Component::where('product_id', $product->id)->where('name', 'hero')->first();
 
-        $feature = Component::where('page_id', $page->id)->where('name', 'feature')->first();
-
-
-        $overview = Component::where('page_id', $page->id)->where('name', 'overview')->first();
+        $feature = Component::where('product_id', $product->id)->where('name', 'feature')->first();
 
 
-        return view("frontend.index", compact(
-            'page',
+        $overview = Component::where('product_id', $product->id)->where('name', 'overview')->first();
+
+
+        return view("frontend.product-page", compact(
+            'product',
             'components',
             'header',
             'sections',
@@ -38,10 +41,10 @@ class HomeController extends Controller
         ));
     }
 
-    public function order(Request $request, $page_id)
+    public function order(Request $request, $product_id)
     {
         $validated = $request->validate([
-            'product_id' => 'required|integer|exists:pages,id',
+            'product_id' => 'required|integer|exists:products,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'phone' => 'required|string|max:20',
@@ -49,13 +52,14 @@ class HomeController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
         $order = Order::create([
-            'page_id' => $validated['product_id'],
+            'product_id' => $validated['product_id'],
             'customer_name' => $validated['name'],
             'customer_email' => $validated['email'],
             'customer_phone' => $validated['phone'],
             'shipping_address' => $validated['address'],
             'quantity' => $validated['quantity'],
         ]);
-        return $order;
+
+        return redirect()->back()->with('success', 'Order placed successfully');
     }
 }

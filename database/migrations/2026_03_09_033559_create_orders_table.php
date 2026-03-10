@@ -12,13 +12,14 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->string('customer_name');
             $table->string('customer_email');
             $table->string('customer_phone');
             $table->string('shipping_address');
             $table->integer('quantity');
-            $table->enum('status', ['processing', 'shipped', 'delivered', 'returned', 'cancelled'])->default('processing');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'returned', 'cancelled'])
+                ->default('pending');
             $table->timestamps();
         });
     }

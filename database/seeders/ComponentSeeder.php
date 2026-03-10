@@ -19,7 +19,7 @@ class ComponentSeeder extends Seeder
             [
                 'name' => 'header',
                 'position' => 1,
-                'page_id' => 1,
+                'product_id' => 1,
                 'data' => [
                     'title' => 'ShopSphere',
                     'sections' => [
@@ -36,7 +36,7 @@ class ComponentSeeder extends Seeder
             [
                 'name' => 'hero',
                 'position' => 2,
-                'page_id' => 1,
+                'product_id' => 1,
                 'data' => [
                     'image' => 'header_image.png',
                     'title' => 'Performance Meets Innovation',
@@ -59,7 +59,7 @@ class ComponentSeeder extends Seeder
             [
                 'name' => 'feature',
                 'position' => 3,
-                'page_id' => 1,
+                'product_id' => 1,
                 'data' => [
                     'title' => 'Powerful Features',
                     'description' => 'Discover the cutting-edge technology that powers every detail.',
@@ -90,7 +90,7 @@ class ComponentSeeder extends Seeder
             [
                 'name' => 'overview',
                 'position' => 4,
-                'page_id' => 1,
+                'product_id' => 1,
                 'data' => [
                     'title' => 'At a Glance',
                     'description' => 'Powerful technology built for creators and explorers. Seamless design meets cutting‑edge functionality. Unlock speed, control, and endless possibilities',
@@ -109,10 +109,10 @@ class ComponentSeeder extends Seeder
                     'button_title' => 'Read more...',
                 ]
             ],
-            ['name' => 'tutorial', 'position' => 5, 'page_id' => 1, 'data' => []],
-            ['name' => 'gallery', 'position' => 6, 'page_id' => 1, 'data' => []],
-            ['name' => 'contact', 'position' => 7, 'page_id' => 1, 'data' => []],
-            ['name' => 'footer', 'position' => 8, 'page_id' => 1, 'data' => []],
+            ['name' => 'tutorial', 'position' => 5, 'product_id' => 1, 'data' => []],
+            ['name' => 'gallery', 'position' => 6, 'product_id' => 1, 'data' => []],
+            ['name' => 'contact', 'position' => 7, 'product_id' => 1, 'data' => []],
+            ['name' => 'footer', 'position' => 8, 'product_id' => 1, 'data' => []],
         ];
 
         foreach ($components as $component) {

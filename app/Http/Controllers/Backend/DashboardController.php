@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Component;
-use App\Models\Page;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Str;
 
 class DashboardController extends Controller
 {
@@ -15,10 +17,11 @@ class DashboardController extends Controller
         return view('backend.dashboard.index');
     }
 
-    public function table()
+    public function productIndex()
     {
-        $pages = Page::all();
-        return view('backend.dashboard.table', compact('pages'));
+        $products = Product::all();
+        // return $products;
+        return view('backend.dashboard.table', compact('products'));
     }
 
     public function createPage()
@@ -28,21 +31,26 @@ class DashboardController extends Controller
 
     public function storePage(Request $request)
     {
-        // Validate input
         $request->validate([
-            'title' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'page_title' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
         ]);
 
-        // Create the page using mass assignment
-        $page = Page::create([
-            'title' => $request->title,
+        $product = Product::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) . '-' . uniqid(),
+            'page_title' => $request->page_title,
+            'price' => $request->price,
+            'stock' => $request->stock,
         ]);
 
         // Create the header component using create()
         Component::create([
             'name' => 'header',
             'position' => 1,
-            'page_id' => $page->id,
+            'product_id' => $product->id,
             'data' => [
                 'title' => $request->title,
                 'sections' => [
@@ -60,7 +68,7 @@ class DashboardController extends Controller
         Component::create([
             'name' => 'hero',
             'position' => 2,
-            'page_id' => $page->id,
+            'product_id' => $product->id,
             'data' => [
                 'image' => 'header_image.png',
                 'title' => 'Performance Meets Innovation',
@@ -74,7 +82,7 @@ class DashboardController extends Controller
         Component::create([
             'name' => 'feature',
             'position' => 3,
-            'page_id' => $page->id,
+            'product_id' => $product->id,
             'data' => [
                 'title' => 'Powerful Features',
                 'description' => 'Discover the cutting-edge technology that powers every detail.',
@@ -106,7 +114,7 @@ class DashboardController extends Controller
         Component::create([
             'name' => 'overview',
             'position' => 4,
-            'page_id' => $page->id,
+            'product_id' => $product->id,
             'data' => [
                 'title' => 'At a Glance',
                 'description' => 'Powerful technology built for creators and explorers. Seamless design meets cutting‑edge functionality. Unlock speed, control, and endless possibilities',
@@ -118,7 +126,23 @@ class DashboardController extends Controller
 
         // Redirect back with success message
         return redirect()
-            ->route('edit.page', $page->id)
+            ->route('edit.page', $product->id)
             ->with('success', 'Page & all components created successfully.');
+    }
+
+    public function orders()
+    {
+        $orders = Order::paginate(10);
+        // return $orders;
+        return view('backend.dashboard.table', compact('orders'));
+    }
+
+    public function updateOrderStatus(Order $order, $status)
+    {
+        // return $order;
+        $order->status = $status;
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order status updated!');
     }
 }

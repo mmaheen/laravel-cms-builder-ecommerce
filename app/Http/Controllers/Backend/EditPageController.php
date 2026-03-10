@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Component;
-use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class EditPageController extends Controller
@@ -12,14 +12,19 @@ class EditPageController extends Controller
     //
     public function edit($id)
     {
-        $page = Page::findOrFail($id);
-        $components = $page->components()->orderBy('position')->get();
+        $product = Product::findOrFail($id);
+        $components = $product->components()->orderBy('position')->get();
+
+        include(resource_path("views/themes/theme1/config.php"));
+
+        dump($sidebar);
+        die;
 
         // Load components
-        $header = Component::where('page_id', $page->id)->where('name', 'header')->first();
-        $hero = Component::where('page_id', $page->id)->where('name', 'hero')->first();
-        $feature = Component::where('page_id', $page->id)->where('name', 'feature')->first();
-        $overview = Component::where('page_id', $page->id)->where('name', 'overview')->first();
+        $header = Component::where('product_id', operator: $product->id)->where('name', 'header')->first();
+        $hero = Component::where('product_id', $product->id)->where('name', 'hero')->first();
+        $feature = Component::where('product_id', $product->id)->where('name', 'feature')->first();
+        $overview = Component::where('product_id', $product->id)->where('name', 'overview')->first();
 
         $sections = $header->data['sections'] ?? [];
 
@@ -105,7 +110,7 @@ class EditPageController extends Controller
         ];
 
         return view("backend.edit.page-one", compact(
-            'page',
+            'product',
             'components',
             'header',
             'sections',
@@ -120,9 +125,9 @@ class EditPageController extends Controller
     }
     public function updateHeader(Request $request, $id)
     {
-        $page = Page::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        $header = Component::where('page_id', $page->id)
+        $header = Component::where('product_id', $product->id)
             ->where('name', 'header')
             ->firstOrFail();
 
@@ -146,9 +151,9 @@ class EditPageController extends Controller
 
     public function updateHero(Request $request, $id)
     {
-        $page = Page::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        $hero = Component::where('page_id', $page->id)
+        $hero = Component::where('product_id', $product->id)
             ->where('name', 'hero')
             ->firstOrFail();
 
@@ -185,9 +190,9 @@ class EditPageController extends Controller
 
     public function updateFeature(Request $request, $id)
     {
-        $page = Page::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        $feature = Component::where('page_id', $page->id)
+        $feature = Component::where('product_id', $product->id)
             ->where('name', 'feature')
             ->firstOrFail();
 
@@ -214,11 +219,11 @@ class EditPageController extends Controller
         return redirect()->back()->with('success', 'Feature component updated successfully!');
     }
 
-    public function destroyFeature($index, $page)
+    public function destroyFeature($index, $product)
     {
-        $page = Page::findOrFail($page);
+        $product = Product::findOrFail($product);
 
-        $feature = Component::where('page_id', $page->id)
+        $feature = Component::where('product_id', $product->id)
             ->where('name', 'feature')
             ->firstOrFail();
 
@@ -236,9 +241,9 @@ class EditPageController extends Controller
 
     public function updateOverview(Request $request, $id)
     {
-        $page = Page::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        $overview = Component::where('page_id', $page->id)
+        $overview = Component::where('product_id', $product->id)
             ->where('name', 'overview')
             ->firstOrFail();
 

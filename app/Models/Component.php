@@ -9,11 +9,11 @@ class Component extends Model
 {
     /** @use HasFactory<\Database\Factories\ComponentFactory> */
     use HasFactory;
-    protected $fillable = ['name', 'position', 'page_id', 'data'];
+    protected $fillable = ['name', 'position', 'product_id', 'data'];
     protected $casts = ['data' => 'array',];
 
-    public function page()
+    public function product()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Product::class);
     }
 }

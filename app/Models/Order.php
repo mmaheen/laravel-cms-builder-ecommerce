@@ -8,7 +8,7 @@ class Order extends Model
 {
     //
     protected $fillable = [
-        "page_id",
+        "product_id",
         "customer_name",
         "customer_email",
         "customer_phone",
@@ -16,4 +16,9 @@ class Order extends Model
         "quantity",
         "status",
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

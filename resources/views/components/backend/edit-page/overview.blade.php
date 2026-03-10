@@ -5,7 +5,8 @@
                min-height: 20vh; 
                background-size: contain;
                background-repeat: no-repeat;">
-            <img class="w-100 mt-5" src="{{ asset('assets/backend/edit-page/images/about.png') }}" alt="">
+            <img class="w-100 mt-5" src="{{ asset('storage/uploads/overviews/' . $overview->data['image']) }}"
+                alt="">
         </div>
         <div class="col-lg-5 d-flex flex-column justify-content-center">
             <h2>

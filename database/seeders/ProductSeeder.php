@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PageSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,6 @@ class PageSeeder extends Seeder
     public function run(): void
     {
         //
-        // Page::factory()->count(10)->create();
-        Page::factory()->create(['title' => 'Test Page']);
+        Product::factory()->count(1)->create();
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->integer('position');
-            $table->foreignId('page_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->json('data')->nullable();
             $table->timestamps();
         });
